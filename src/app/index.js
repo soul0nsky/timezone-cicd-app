@@ -36,8 +36,6 @@ function getUTCOffset(timezone) {
 }
 
 app.get('/', (req, res) => {
-  const currentDate = new Date().toLocaleString('ru-RU');
-
   let timeCardsHTML = '';
   for (const [city, timezone] of Object.entries(TIMEZONES)) {
     const time = getTimeInTimezone(timezone);
@@ -45,7 +43,7 @@ app.get('/', (req, res) => {
 
     timeCardsHTML += `
       <div class="time-card">
-        <h2>🌍 ${city}</h2>
+         <h2>🌍<br>${city}</h2>
         <div class="time">${time}</div>
         <div class="offset">${offset}</div>
       </div>
@@ -224,7 +222,6 @@ app.get('/', (req, res) => {
         <div class="footer">
           <p><strong>📚 НИЯУ МИФИ - Основы технологического конвейера</strong></p>
           <p><strong>Домашнее задание №2:</strong> Настройка CI/CD в GitHub Actions</p>
-          <p><strong>Порт:</strong> ${PORT}</p>
           <span class="status">✓ Приложение работает корректно</span>
           <br>
           <button class="refresh-btn" onclick="location.reload()">🔄 Обновить время</button>
