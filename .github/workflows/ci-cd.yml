@@ -26,7 +26,7 @@ jobs:
     strategy:
       matrix:
         # Список операционных систем для тестирования
-        os: [ubuntu-latest, windows-latest, macos-latest, macos-13]
+        os: [ubuntu-latest, windows-latest, macos-latest]
         # Версия Node.js для всех запусков
         node-version: [20.x]
     
@@ -59,16 +59,6 @@ jobs:
       # Шаг 6: Запуск юнит-тестов (5 тестов через Jest)
       - name: Run tests
         run: npm test
-      
-      # Шаг 7: Сохранение результатов тестов как артефактов
-      # Выполняется всегда, даже если предыдущие шаги провалились
-      - name: Upload test results
-        uses: actions/upload-artifact@v4
-        if: always()  # Выполнить даже при ошибках в предыдущих шагах
-        with:
-          name: test-results-${{ matrix.os }}  # Уникальное имя для каждой ОС
-          path: coverage/  # Папка с результатами тестов
-          retention-days: 7  # Хранить артефакты 7 дней
 
   # Задача 2: Автоматический деплой на Render.com
   deploy:

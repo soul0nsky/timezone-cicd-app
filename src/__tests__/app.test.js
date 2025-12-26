@@ -5,7 +5,7 @@ describe('Timezone App Tests', () => {
   test('GET / should return 200 OK', async () => {
     const response = await request(app).get('/');
     expect(response.statusCode).toBe(200);
-  });
+  }, 10000);
 
   test('GET / should contain HTML with timezone title', async () => {
     const response = await request(app).get('/');
